@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  backend_prod:
+    build:
+      context: .
+    command: bundle exec hanami server
+    volumes:
+      - ./:/quotes
+    ports:
+      - "2300:2300"
+    depends_on:
+      - db_prod
+    environment:
+      HANAMI_ENV: production
+    env_file:
+      - .env.with-quotes.production
+  db_prod:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres_admin_password

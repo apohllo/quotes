@@ -1,0 +1,3 @@
+project=quotes
+test=minitest
+template=erb
